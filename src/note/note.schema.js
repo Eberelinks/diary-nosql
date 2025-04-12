@@ -5,7 +5,6 @@ const noteSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'User',
       required: true,
-      unique: true,
     },
   
   
@@ -35,7 +34,7 @@ const noteSchema = new Schema({
     default: Date.now,
   }
 
-}, { timeStamps: true});
+}, { timestamps: true});
 
 const Note = model("Note", noteSchema);
 export default Note; // export the model
