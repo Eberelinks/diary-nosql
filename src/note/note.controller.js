@@ -2,7 +2,11 @@ import * as noteService from "./note.service.js";
 import { asyncWrapper } from "../lib/utils.js";
 
 export const createNote = asyncWrapper(async (req, res) => {
-  const newNote = await noteService.createNewNote(req.body);
+  const { title, content } = req.body;
+  const userId = req.user._id;
+
+  const newNote = await noteService.createNewNote(userId, title, content);
+  
   res.status(201).json({
     success: true,
     message: "Note created successfully",
@@ -24,7 +28,7 @@ export const getAllNotes = asyncWrapper(async (req, res) => {
 });
 
 export const getNoteById = asyncWrapper(async (req, res) => {
-  const note = await noteService.getNoteById(req.params.id);
+  const note = await noteService.getNoteById(req.user._id);
   res.status(200).json({
     success: true,
     message: "Note fetched successfully",

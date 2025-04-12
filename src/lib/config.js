@@ -1,6 +1,7 @@
 import { config } from "dotenv";
 
 export default {
+  
   get: function(key){
     config();
     return process.env[key];

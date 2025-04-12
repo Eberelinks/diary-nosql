@@ -4,6 +4,7 @@ import compression from "compression";
 import helmet from "helmet";
 import cors from "cors";
 import { noteRouter } from "../routes/notes.js";
+import { userRouter } from "../routes/user.js";
 
 const app = express();
 const server = createServer(app);
@@ -22,5 +23,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/notes", noteRouter);
+app.use("/api/v1/users", userRouter);
 
 export { app, server };
